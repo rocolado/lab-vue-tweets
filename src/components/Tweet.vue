@@ -1,38 +1,47 @@
 <template>
   <div className="tweet">
-    <img
-      src="https://i.imgur.com/9yw1Fyw.jpg"
-      className="profile"
-      alt="profile"
-    />
+    <ProfileImage :image="user.image"/>
 
     <div className="body">
       <div className="top">
-        <span className="user">
-          <span className="name">Ironhack</span>
-          <span className="handle">@ironhack</span>
-        </span>
-
-        <span className="timestamp">Nov 30, 2020</span>
+        <User :user="user"/>
+        <Timestamp :timestamp="timestamp"/>
       </div>
 
-      <p className="message">
-        On December 7th, we will be hosting a #webinar that will introduce you
-        to #SQL! Are you ready? 🚀
-      </p>
-
-      <div className="actions">
-        <!-- Font Awesome icons -->
-        <i class="far fa-comment"></i>
-        <i class="fas fa-retweet"></i>
-        <i class="far fa-heart"></i>
-        <i class="fas fa-share"></i>
-      </div>
+      <Message :message="message"/>
+      
+      <Actions/>
     </div>
 
     <i class="fas fa-ellipsis-h"></i>
   </div>
 </template>
+
+<script>
+  import ProfileImage from "./ProfileImage.vue"
+  import User from "./User.vue"
+  import Timestamp from "./Timestamp.vue"
+  import Message from "./Message.vue"
+  import Actions from "./Actions.vue"
+
+  export default {
+    name: "Tweet",
+    
+    components: {
+      ProfileImage,
+      User,
+      Timestamp,
+      Message,
+      Actions  
+    },
+
+    props: {
+      user: Object,
+      timestamp: String,
+      message: String
+    }
+  };
+</script>
 
 <style scoped>
 a {
